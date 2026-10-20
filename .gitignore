@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Gizli bilgiler: ASLA commit etme
+.env
+*.key
+*.pem
+
+# Üretilen raporlar ve gerçek loglar (sadece samples/ içindeki sahte veri repoda kalsın)
+report.html
+report.json
+*.log
+!samples/auth.log

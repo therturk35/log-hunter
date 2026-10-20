@@ -1,0 +1,9 @@
+# Yetkisiz yetki yükseltme girişimi.
+id: LH-005
+title: Reddedilen sudo denemesi
+description: Bir kullanıcı sudo ile yetki yükseltmeye çalıştı ve reddedildi.
+severity: medium
+mitre: T1548.003      # Sudo and Sudo Caching
+type: match
+where:
+  event_type: sudo_denied

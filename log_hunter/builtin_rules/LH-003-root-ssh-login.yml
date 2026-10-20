@@ -1,0 +1,10 @@
+# Doğrudan root ile SSH girişi genelde yapılandırma hatası veya saldırı işaretidir.
+id: LH-003
+title: Root ile SSH girişi
+description: root kullanıcısı SSH ile başarılı giriş yaptı. PermitRootLogin kapalı olmalı.
+severity: high
+mitre: T1078          # Valid Accounts
+type: match
+where:
+  event_type: ssh_accepted
+  user: root

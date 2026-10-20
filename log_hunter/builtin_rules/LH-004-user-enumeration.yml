@@ -1,0 +1,12 @@
+# Sistemde olmayan birçok kullanıcı adını deneyen IP = keşif / kullanıcı tarama.
+id: LH-004
+title: SSH kullanıcı adı taraması
+description: Aynı IP 60 saniyede 3 veya daha fazla geçersiz kullanıcı adı denedi.
+severity: medium
+mitre: T1110
+type: threshold
+where:
+  event_type: invalid_user
+group_by: source_ip
+threshold: 3
+window_seconds: 60

@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "log-hunter"
+dynamic = ["version"]
+description = "Kural tabanlı (Sigma tarzı YAML) log tarama motoru: auth.log, MITRE ATT&CK eşlemesi, HTML/JSON/SARIF çıktı"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+dependencies = ["PyYAML>=6.0"]
+keywords = ["security", "soc", "log-analysis", "mitre-attack", "sarif", "detection"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Intended Audience :: Information Technology",
+]
+
+[project.scripts]
+log-hunter = "log_hunter.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "log_hunter.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["log_hunter*"]
+
+# Varsayılan kurallar paketle birlikte dağıtılsın
+[tool.setuptools.package-data]
+log_hunter = ["builtin_rules/*.yml"]

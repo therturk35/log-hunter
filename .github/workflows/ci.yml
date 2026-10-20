@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# Güvenlik: iş akışına en az yetki (sadece okuma)
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Bağımlılıkları kur
+        run: pip install -r requirements-dev.txt
+      - name: Testleri çalıştır
+        run: pytest -q
+      - name: Paketi kur (varsayılan kurallar pakete dahil mi?)
+        run: pip install .
+      - name: Duman testi (uyarı beklenir -> çıkış kodu 1)
+        run: |
+          log-hunter samples/auth.log --year 2026 --html report.html --json report.json --sarif report.sarif --fail-on-alert || test $? -eq 1
+          python -c "import json; json.load(open('report.sarif')); print('SARIF geçerli JSON')"

@@ -1,0 +1,14 @@
+# Brute-force'un ARDINDAN aynı IP'den başarılı giriş = muhtemel ele geçirme.
+id: LH-002
+title: Brute-force sonrası başarılı SSH girişi
+description: Aynı IP çok sayıda başarısız denemeden sonra 5 dakika içinde başarılı giriş yaptı. Hesap ele geçirilmiş olabilir.
+severity: critical
+mitre: T1110
+type: threshold
+where:
+  event_type: ssh_failed
+group_by: source_ip
+threshold: 5
+window_seconds: 300
+followed_by:
+  event_type: ssh_accepted

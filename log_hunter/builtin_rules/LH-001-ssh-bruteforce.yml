@@ -1,0 +1,12 @@
+# Aynı IP'den kısa sürede çok sayıda başarısız SSH girişi = brute-force.
+id: LH-001
+title: SSH brute-force denemesi
+description: Aynı kaynak IP 60 saniyede 5 veya daha fazla başarısız SSH girişi yaptı.
+severity: high
+mitre: T1110          # Brute Force
+type: threshold
+where:
+  event_type: ssh_failed
+group_by: source_ip
+threshold: 5
+window_seconds: 60
